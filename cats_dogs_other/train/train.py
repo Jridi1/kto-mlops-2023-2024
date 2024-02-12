@@ -7,6 +7,17 @@ from steps.split import random_split_train_evaluate_test_from_extraction
 from steps.test import Inference, test_model
 from steps.train_and_evaluate import train_and_evaluate_model
 
+from steps.s3_wrapper import S3ClientWrapper
+
+s3_client = S3ClientWrapper(
+    boto3.client(
+        "s3",
+        endpoint_url=os.environ.get("MLFLOW_S3_ENDPOINT_URL"),
+        aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")
+  )
+)
+
 parser = argparse.ArgumentParser("training")
 parser.add_argument("--split_ratio_train", type=float)
 parser.add_argument("--split_ratio_evaluate", type=float)
