@@ -1,3 +1,6 @@
+import mlflow.keras
+
+
 import argparse
 import os
 import boto3
@@ -25,6 +28,9 @@ epochs = args.epochs
 working_dir = args.working_dir
 
 if __name__ == "__main__":
+  mlflow.autolog()
+  with mlflow.start_run():
+    print('toto')
     s3_client = S3ClientWrapper(
         boto3.client(
             "s3",
