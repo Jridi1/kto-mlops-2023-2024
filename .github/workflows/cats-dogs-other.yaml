@@ -20,6 +20,7 @@ jobs:
           ./init_packages.sh
           pip install -r ./cats_dogs_other/requirements.txt
           pip install -r ./cats_dogs_other/label/requirements.txt
+          chmod 777
           python -m unittest
       - name: Install mlflow
         run: |
